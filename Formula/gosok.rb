@@ -28,6 +28,45 @@ class Gosok < Formula
 
   def install
     bin.install Dir["gosok-*"].first => "gosok"
+
+    (bin/"gosok-launcher").write <<~EOS
+      #!/bin/bash
+      if [ -f "$HOME/.gosok/env" ]; then
+        set -a
+        . "$HOME/.gosok/env"
+        set +a
+      fi
+      exec #{opt_bin}/gosok "$@"
+    EOS
+    chmod 0755, bin/"gosok-launcher"
+
+    (etc/"gosok").mkpath
+    (etc/"gosok/env.example").write <<~EOS
+      # Copy to ~/.gosok/env and edit, then: brew services restart gosok
+      #
+      # GOSOK_PORT=18435
+      # GOSOK_DB_PATH=$HOME/.gosok/gosok.db
+      # GOSOK_API_URL=http://localhost:18435
+    EOS
+  end
+
+  service do
+    run [opt_bin/"gosok-launcher"]
+    keep_alive true
+    log_path var/"log/gosok.log"
+    error_log_path var/"log/gosok.log"
+  end
+
+  def caveats
+    <<~EOS
+      To customize the port or other settings:
+        mkdir -p ~/.gosok
+        cp #{etc}/gosok/env.example ~/.gosok/env
+        $EDITOR ~/.gosok/env
+        brew services restart gosok
+
+      Default port: 18435. Database: ~/.gosok/gosok.db.
+    EOS
   end
 
   test do
