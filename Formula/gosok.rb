@@ -40,8 +40,8 @@ class Gosok < Formula
     EOS
     chmod 0755, bin/"gosok-launcher"
 
-    (etc/"gosok").mkpath
-    (etc/"gosok/env.example").write <<~EOS
+    pkgshare.mkpath
+    (pkgshare/"env.example").write <<~EOS
       # Copy to ~/.gosok/env and edit, then: brew services restart gosok
       #
       # GOSOK_PORT=18435
@@ -61,7 +61,7 @@ class Gosok < Formula
     <<~EOS
       To customize the port or other settings:
         mkdir -p ~/.gosok
-        cp #{etc}/gosok/env.example ~/.gosok/env
+        cp #{opt_pkgshare}/env.example ~/.gosok/env
         $EDITOR ~/.gosok/env
         brew services restart gosok
 
