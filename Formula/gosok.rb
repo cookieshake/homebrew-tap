@@ -1,28 +1,28 @@
 class Gosok < Formula
   desc "Web-based terminal multiplexer with project and tab management"
   homepage "https://github.com/cookieshake/gosok-terminal"
-  version "0.4.2"
+  version "0.5.0"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/cookieshake/gosok-terminal/releases/download/v#{version}/gosok-darwin-arm64"
-      sha256 "26c8a21e801ca9302a772978bdfe3392ce2caff918126cf719e2d2e6ce7d2109"
+      sha256 "932e0241e50eab435635ce816eb2aa7cce5a02762084203d1ad9086a626178ed"
     end
     on_intel do
       url "https://github.com/cookieshake/gosok-terminal/releases/download/v#{version}/gosok-darwin-amd64"
-      sha256 "51406b68dbeada7b2260345b5a60f9bfdc4d572364665bf00de5df9e2b088d6f"
+      sha256 "4c5aa72d2fa36b4ac5908048bd04f9f8ff5d9cfc256eae4bc40f109a47fee88d"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/cookieshake/gosok-terminal/releases/download/v#{version}/gosok-linux-arm64"
-      sha256 "7c8d9452fc957a040409a76d3df1dd55d648267ceeb0f3a432432118fb639aa2"
+      sha256 "5e175103e70a651df462f9adab1055310a1e364eae09ce9667950e594a331ded"
     end
     on_intel do
       url "https://github.com/cookieshake/gosok-terminal/releases/download/v#{version}/gosok-linux-amd64"
-      sha256 "afd7f58876543a2cb24d72b34137a2501b0937ae6cc50ea0ed575469a42a7a9f"
+      sha256 "7678dcf5acfe949ac6130e74b2c8f6817633bf8a2522b9280a8c519c16fb2d95"
     end
   end
 
